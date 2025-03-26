@@ -1,0 +1,4 @@
+- Install kubectl: [[kubectl-setup]]
+
+---
+

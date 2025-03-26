@@ -1,0 +1,3 @@
+Extensions can monitor browser events in the background using the extension's service worker. Service workers are special JavaScript environments that handle events and terminate when they're not needed.
+
+The `"activeTab"` permission allows users to _purposefully_ choose to run the extension on the focused tab; this way, it protects the user's privacy. Another benefit is that it does not trigger a [permission warning](https://developer.chrome.com/docs/extensions/develop/concepts/permission-warnings#permissions_with_warnings).
