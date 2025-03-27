@@ -28,26 +28,21 @@ sudo nano /etc/netplan/01-netcfg.yaml
 
 01-netcfg.yaml
 ```yaml
-network:
-  version: 2
-  renderer: NetworkManager
-  ethernets:
-    ens33:
-      dhcp4: false
-      dhcp6: false
-  bridges:
-    br0:
-      interfaces: [ens33]
-      dhcp4: false
-      addresses: [192.168.2.120/24]
-
-      routes:
-        - to: default
-          via: 192.168.2.1
-          metric: 100
-      nameservers:
-        addresses: [8.8.8.8]
-
+network:  
+  version: 2  
+  renderer: NetworkManager  
+  ethernets:  
+    wlp0s20f3:  # Replace with your actual Wi-Fi interface name (use `ip a` to check)  
+      dhcp4: true  
+      dhcp6: false  bridges:  
+    br0:  
+      interfaces: [wlp0s20f3]  
+      dhcp4: true  
+      dhcp6: false  
+      parameters:  
+        stp: false  
+        forward-delay: 0  
+      mtu: 1500
 ```
 
 ```bash
@@ -55,3 +50,14 @@ sudo netplan apply
 ```
 
 
+### Debug bridge
+```bash
+sudo ip link add name br0 type bridge
+sudo ip link set br0 up
+sudo systemctl restart libvirtd
+```
+
+change tty to gui
+```bash
+sudo chvt x  # x: [1-7]
+```
